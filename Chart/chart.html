@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart</title>
+    <link rel="stylesheet" href="chart.css">
+
+    <style>
+        .product-stats {
+          justify-content: center;
+          background-color: #d4bdde;
+        }
+      
+        .top-selling-products {
+          width: 80%; /* Adjust the width as per your preference */
+          margin: 0 auto; /* Center the table within its container */
+          border-collapse: collapse;
+        }
+      
+        .top-selling-products th,
+        .top-selling-products td {
+          border: 1px solid BLACK;
+          padding: 8px;
+          text-align: left;
+        }
+      
+        .product-name {
+          align-items: center;
+        }
+      
+        .product-name .icon {
+          margin-right: 8px;
+        }
+      </style>
+      
+      
+
+</head>
+<body>
+    <br>
+    <div>
+        <label for="chartType"><b>Select what you want to view:</b></label>
+        <select id="chartType" onchange="toggleChart()">
+            <option value="" disabled selected>Select a Chart</option>
+            <option value="barchart">No of Lectures</option>
+            <option value="doughnut">Percentage of Attendance</option>
+            <option value="line">Progress</option>
+            <option value="polar">Activities</option>
+            <option value="all">All</option>
+
+        </select>
+    </div>
+    <br><br>
+    <div class="container">
+        <div class="chart" id="barchartContainer">
+            <canvas id="barchart" width="600" height="300"></canvas>
+        </div>
+        <div class="chart" id="doughnutContainer">
+            <canvas id="doughnut" width="300" height="300"></canvas>
+        </div>
+    </div>
+    <div class="container">
+        <div class="chart" id="lineContainer">
+            <canvas id="line" width="600" height="300"></canvas>
+        </div>
+        <div class="chart" id="polarContainer">
+            <canvas id="polar" width="300" height="300"></canvas>
+        </div>
+    </div>
+
+    <div class="product-stats flex" style="background-color: #d4bdde;">
+        <div class="product-sales stats-box" style="background-color: #d4bdde;">
+          <h2 class="heading"></h2>
+          <canvas id="products"></canvas>
+        </div>
+
+        <div class="top-selling stats-box" style="background-color: #d4bdde;">
+          <!-- <h2 class="heading">Top Selling Product</h2> -->
+          <table class="top-selling-products" height="100%" width="100%" style="background-color: #d4bdde;">
+            <tr>
+              <th style="color: #fff;">Date</th>
+              <th style="color: #fff;">Lecture</th>
+              <th style="color: #fff;">Timing</th>
+              <!-- <th style="color: #fff;">Sold</th> -->
+            </tr>
+
+            <tr>
+              <td>2024-02-25</td>
+              <td>
+                <div class="product-name flex">
+                  <div class="icon">
+                    <ion-icon name="logo-amazon"></ion-icon>
+                  </div>
+                  <p>Physics</p>
+                </div>
+              </td>
+              <td>12:00 - 14:00</td>
+              <!-- *<td>351</td> -->
+            </tr>
+
+            <tr>
+              <td>2024-02-25</td>
+              <td>
+                <div class="product-name iphone flex">
+                  <div class="icon">
+                    <ion-icon name="logo-apple"></ion-icon>
+                  </div>
+                  <p>Chemistry</p>
+                </div>
+              </td>
+              <td>14:05 - 16:00</td>
+              <!-- <td>121</td> -->
+            </tr>
+
+            <tr>
+              <td>2024-02-25</td>
+              <td>
+                <div class="product-name windows flex">
+                  <div class="icon">
+                    <ion-icon name="logo-microsoft"></ion-icon>
+                  </div>
+                  <p>Maths</p>
+                </div>
+              </td>
+              <td>16:05 - 17:00</td>
+              <!-- <td>195</td> -->
+            </tr>
+          </table>
+        </div>
+      </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="./chart.js"></script>
+</script>
+<script>
+    function toggleChart() {
+        var selectedChart = document.getElementById("chartType").value;
+
+        // Hide all charts
+
+        document.getElementById("barchartContainer").style.display = "none";
+        document.getElementById("doughnutContainer").style.display = "none";
+        document.getElementById("lineContainer").style.display = "none";
+        document.getElementById("polarContainer").style.display = "none";
+
+        if(selectedChart=="all"){
+        document.getElementById("barchartContainer").style.display = "block";
+        document.getElementById("doughnutContainer").style.display = "block";
+        document.getElementById("lineContainer").style.display = "block";
+        document.getElementById("polarContainer").style.display = "block";
+
+        }
+
+                // Show the selected chart
+                document.getElementById(selectedChart + "Container").style.display = "block";
+    }
+</script>
+    
+    
+</body>
+</html>
